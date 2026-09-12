@@ -291,3 +291,108 @@ nrow(adult_df)
 ```
 ## Exercise 3
 
+
+
+a)
+
+
+```{r}
+nextHappy <- function(input) {
+  
+  
+  is_happy <- function(num) {
+    seen <- c() 
+    
+    while (num != 1 && !(num %in% seen)) {
+      seen <- c(seen, num)
+      
+      digits <- as.numeric(strsplit(as.character(num), "")[[1]])
+
+      num <- sum(digits^2)
+    }
+    
+    return(num == 1)
+  }
+  
+  current_num <- input + 1
+  while (TRUE) {
+    if (is_happy(current_num)) {
+      return(current_num)
+    }
+    current_num <- current_num + 1
+  }
+}
+
+```
+
+
+
+
+b)
+
+```{r}
+happySequence <- function(input) {
+
+  
+
+  current_val <- input
+  seq_vector <- c(current_val)
+  seen_vals <- c()
+  
+
+  while (current_val != 1 && !(current_val %in% seen_vals)) {
+    seen_vals <- c(seen_vals, current_val)
+    
+
+    digits <- as.numeric(strsplit(as.character(current_val), "")[[1]])
+    current_val <- sum(digits^2)
+    
+
+    seq_vector <- c(seq_vector, current_val)
+  }
+  
+
+  is_happy_bool <- (current_val == 1)
+  
+  return(list(
+    sequence = seq_vector,
+    isHappy = is_happy_bool
+  ))
+}
+```
+
+
+
+c)
+
+
+```{r}
+  is_happy <- function(num) {
+    seen <- c() 
+    
+    while (num != 1 && !(num %in% seen)) {
+      seen <- c(seen, num)
+      
+      digits <- as.numeric(strsplit(as.character(num), "")[[1]])
+
+      num <- sum(digits^2)
+    }
+    
+    return(num == 1)
+  }
+
+count <- 0
+
+for (i in 1:100) {
+  if (is_happy(i)) {
+    count <- count + 1
+  }
+}
+
+print(count)
+print(count/100)
+
+ans <- 15999
+print(ans)
+```
+
