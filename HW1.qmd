@@ -179,6 +179,19 @@ GY = mean(df_season_2$GY, na.rm = TRUE)
 averages_table_two
 ```
 
+e) Carry out a series of t-tests to examine whether the ngrain yield (GY) differs between the two seasons. State the null and the alternative hypotheses. Present the R output and interpret the results.
+
+alternative hypothesis: alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+
+null hypothesis: alternative hypothesis: true difference in means between group 1 and group 2 is equal to 0
+
+```{r}
+t_test_result <- t.test(GY ~ Season, data = df)
+
+print(t_test_result)
+```
+
+We fail to reject the null. There is no statistically significant difference.
 
 ## Exercise 2
 
