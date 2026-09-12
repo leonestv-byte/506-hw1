@@ -93,6 +93,93 @@ result <- df |>
 result[result$avg_value == max(result$avg_value), ]$Cultivar
 ```
 
+d) Create a table showing the average value of each quantitative variable:
+
+One row containing overall averages.
+
+```{r}
+averages_table <- data.frame(
+  Repetition = mean(df$Repetition, na.rm = TRUE),
+  IFP        = mean(df$IFP, na.rm = TRUE),
+  PH         = mean(df$PH, na.rm = TRUE),
+  
+NLP = mean(df$NLP, na.rm = TRUE),
+
+NGP = mean(df$NGP, na.rm = TRUE),
+
+NGL = mean(df$NGL, na.rm = TRUE),
+
+NS = mean(df$NS, na.rm = TRUE),
+
+MHG = mean(df$MHG, na.rm = TRUE),
+
+GY = mean(df$GY, na.rm = TRUE)
+
+)
+
+
+
+averages_table
+```
+
+
+One row for each season containing season-specific averages.
+
+```{r}
+df_season_1 = df[df$Season == 1,]
+df_season_2 = df[df$Season == 2,]
+
+averages_table_one <- data.frame(
+  Repetition = mean(df_season_1$Repetition, na.rm = TRUE),
+  IFP        = mean(df_season_1$IFP, na.rm = TRUE),
+  PH         = mean(df_season_1$PH, na.rm = TRUE),
+  
+NLP = mean(df_season_1$NLP, na.rm = TRUE),
+
+NGP = mean(df_season_1$NGP, na.rm = TRUE),
+
+NGL = mean(df_season_1$NGL, na.rm = TRUE),
+
+NS = mean(df_season_1$NS, na.rm = TRUE),
+
+MHG = mean(df_season_1$MHG, na.rm = TRUE),
+
+GY = mean(df_season_1$GY, na.rm = TRUE)
+
+)
+
+
+
+averages_table_one
+
+
+
+
+averages_table_two <- data.frame(
+  Repetition = mean(df_season_2$Repetition, na.rm = TRUE),
+  IFP        = mean(df_season_2$IFP, na.rm = TRUE),
+  PH         = mean(df_season_2$PH, na.rm = TRUE),
+  
+NLP = mean(df_season_2$NLP, na.rm = TRUE),
+
+NGP = mean(df_season_2$NGP, na.rm = TRUE),
+
+NGL = mean(df_season_2$NGL, na.rm = TRUE),
+
+NS = mean(df_season_2$NS, na.rm = TRUE),
+
+MHG = mean(df_season_2$MHG, na.rm = TRUE),
+
+GY = mean(df_season_2$GY, na.rm = TRUE)
+
+)
+
+
+
+averages_table_two
+```
+
+
 ## Exercise 2
 
 
