@@ -195,6 +195,99 @@ We fail to reject the null. There is no statistically significant difference.
 
 ## Exercise 2
 
+a) Import the data into a data.frame in R. As with the previous data, you may download the data outside of your submission, but importation should take place inside the problem set submission.
 
+```{r}
+
+
+adult_df <- read.csv(
+  file = "adult.data", 
+  header = FALSE, 
+  # col.names = col_names, 
+  strip.white = TRUE,  
+  na.strings = "?"    
+)
+
+head(adult_df)
+```
+b)
+```{r}
+col_names <- c(
+  "age", "workclass", "fnlwgt", "education", "education_num",
+  "marital_status", "occupation", "relationship", "race", "sex",
+  "capital_gain", "capital_loss", "hours_per_week", "native_country", 
+  "income"
+)
+
+adult_df <- read.csv(
+  file = "adult.data", 
+  header = FALSE, 
+  col.names = col_names, 
+  strip.white = TRUE,  
+  na.strings = "?"    
+)
+
+head(adult_df)
+
+```
+
+c) Missing Variables
+
+```{r}
+nrow(adult_df[adult_df$workclass == "?", ])
+nrow(adult_df[adult_df$age == "?", ])
+nrow(adult_df[adult_df$fnlwgt == "?", ])
+nrow(adult_df[adult_df$education == "?", ])
+nrow(adult_df[adult_df$education_num == "?", ])
+nrow(adult_df[adult_df$marital_status == "?", ])
+nrow(adult_df[adult_df$occupation == "?", ])
+nrow(adult_df[adult_df$relationship == "?", ])
+nrow(adult_df[adult_df$race == "?", ])
+nrow(adult_df[adult_df$sex == "?", ])
+nrow(adult_df[adult_df$capital_gain == "?", ])
+nrow(adult_df[adult_df$capital_loss == "?", ])
+nrow(adult_df[adult_df$hours_per_week == "?", ])
+nrow(adult_df[adult_df$native_country == "?", ])
+nrow(adult_df[adult_df$income == "?", ])
+```
+d) Restrict the sample to individuals working at least 10 hours per week. Confirm the sample size before and after filtering.
+
+```{r}
+nrow(adult_df)
+
+adult_df = adult_df[adult_df$hours_per_week >= 10,]
+
+nrow(adult_df)
+```
+
+e) Remove observations with missing values for occupation, workclass, or native country. Explain why.
+
+We do not have values for this data, and do not want to give fake results.
+
+```{r}
+
+adult_df <- adult_df[!is.na(adult_df$occupation),]
+
+adult_df <- adult_df[!is.na(adult_df$workclass),]
+
+adult_df <- adult_df[!is.na(adult_df$native_country),]
+```
+
+f)
+
+```{r}
+
+adult_df <- adult_df[adult_df$age >= 18,]
+
+adult_df <- adult_df[adult_df$age <= 90,]
+
+adult_df <- adult_df[!adult_df$education != 'Preschool',]
+```
+
+g)
+
+```{r}
+nrow(adult_df)
+```
 ## Exercise 3
 
