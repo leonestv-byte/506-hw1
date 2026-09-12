@@ -1,0 +1,100 @@
+---
+title: "506 HW1 1"
+author: "Steven Leone"
+format: html
+editor: visual
+---
+This is the link to the repo: <https://github.com/leonestv-byte/Homework_1>.
+
+This is the file for DATASCI 506 HW1.
+
+```{r}
+#| echo: false
+# install.packages("readODS")
+library(readODS)
+library(dplyr)
+
+```
+
+## Exercise 1
+
+a) Import the data into a data.frame in R. Use the dataset documentation to assign appropriate variable names. (Note: Downloading and unzipping the file can take place outside of your submitted document, but importing the file should be in the submission.)
+
+```{r}
+df <- read.table("data.csv", sep =",", header = TRUE)
+
+descriptions <- read_ods("cultivars-description.ods")
+
+```
+
+b) Using the information provided in the dataset documentation: Verify that there are 320 observations in the dataset; 40 distinct cultivars; and all the observations were collected from two seasons. Produce a table showing the number of observations from each season.
+
+```{r}
+print(paste("The number of observations in the dataset is: ", nrow(df)))
+```
+
+
+```{r}
+print(paste("The number of distinct cultivars is: ", nrow(descriptions)))
+```
+
+c) Use the data to answer the following questions:
+
+What is the correlation between plant height (PH) and grain yield (GY)?
+
+```{r}
+cor(df$PH, df$GY)
+```
+
+Calculate the correlation between PH and GY separately for each season.
+
+```{r}
+season_1_cor <- cor(df[df$Season == 1, ]$PH, df[df$Season == 1, ]$GY,)
+season_1_cor
+
+```
+
+```{r}
+season_2_cor <- cor(df[df$Season == 2, ]$PH, df[df$Season == 2, ]$GY,)
+season_2_cor
+
+```
+Which season has the higher correlation?
+
+```{r}
+season_with_higher_correlation <-ifelse(abs(season_1_cor) > abs(season_2_cor), "Season 1", "Season 2")
+print(season_with_higher_correlation)
+```
+
+
+What is the grain yield of the soybean observation with the greatest plant height?
+
+```{r}
+df[df$PH == max(df$PH), ]$GY
+```
+
+What percentage of observations have a thousand seed weight (MHG) greater than the overall average thousand seed weight?
+
+```{r}
+nrow(df[df$MHG > mean(df$MHG), ]) / nrow(df)
+
+```
+
+
+Which cultivar has the highest average grain yield?
+
+```{r}
+result <- df |>
+  group_by(Cultivar) |>       
+  summarize(
+    avg_value = mean(GY)     
+  )
+
+result[result$avg_value == max(result$avg_value), ]$Cultivar
+```
+
+## Exercise 2
+
+
+## Exercise 3
+
